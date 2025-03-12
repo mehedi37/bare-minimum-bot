@@ -77,10 +77,10 @@ export function SummarizeProvider({ children }) {
     }
 
     // Check if the data is a quiz response
-    if (data.questions || data.quiz) {
-      // Handle both possible formats from the API
+    if (data.questions) {
+      // Standard quiz format
       const quizData = {
-        questions: data.questions || data.quiz || [],
+        questions: data.questions,
         source_type: data.source_type,
         source_info: data.source_info || {},
         timestamp: data.timestamp || new Date().toISOString(),

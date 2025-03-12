@@ -57,6 +57,24 @@ export async function POST(request) {
           data.key_points = [];
         }
       }
+
+      // Handle quiz format consistency
+      if (data && data.questions) {
+        // Ensure source_type is set
+        if (!data.source_type) {
+          data.source_type = 'pdf';
+        }
+
+        // Ensure source_info is present
+        if (!data.source_info) {
+          data.source_info = {};
+        }
+
+        // Ensure metadata is present
+        if (!data.metadata) {
+          data.metadata = {};
+        }
+      }
     } else {
       const textResponse = await response.text();
       console.log('PDF API Non-JSON Response:', textResponse);

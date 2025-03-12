@@ -60,6 +60,24 @@ export async function POST(request) {
           data.sections = [];
         }
       }
+
+      // Handle quiz format consistency
+      if (data && data.questions) {
+        // Ensure source_type is set
+        if (!data.source_type) {
+          data.source_type = 'youtube';
+        }
+
+        // Ensure source_info is present
+        if (!data.source_info) {
+          data.source_info = {};
+        }
+
+        // Ensure metadata is present
+        if (!data.metadata) {
+          data.metadata = {};
+        }
+      }
     } else {
       const textResponse = await response.text();
       console.log('YouTube API Non-JSON Response:', textResponse);
