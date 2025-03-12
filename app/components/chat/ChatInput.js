@@ -36,7 +36,7 @@ export default function ChatInput() {
   };
 
   return (
-    <div className="border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 py-4">
+    <div className="rounded-xl border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 py-4">
       {/* Suggestions */}
       {suggestions && suggestions.length > 0 && (
         <div className="mb-4 px-4 flex flex-wrap gap-2">

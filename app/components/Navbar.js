@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from '../contexts/ThemeContext';
+import { BotMessageSquare } from 'lucide-react';
 
 /**
  * Navbar component for the application
@@ -34,7 +35,8 @@ export default function Navbar() {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="text-xl font-bold text-blue-600 dark:text-blue-400">
-                BareMinimum
+              <p className='flex'><BotMessageSquare className='me-2' color="#58c7fe" size="28"/>BareMinimum</p>
+
               </Link>
             </div>
 

@@ -5,6 +5,8 @@ import { useSummarize } from '@/app/contexts/SummarizeContext';
 import PdfForm from '@/app/components/summarize/PdfForm';
 import Card from '@/app/components/ui/Card';
 import Button from '@/app/components/ui/Button';
+import { Bug, FileText } from 'lucide-react';
+
 import { ChevronLeftIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
 /**
@@ -26,12 +28,14 @@ export default function PDFSummarizePage() {
   };
 
   // Check if we should show debug info
-  const isDevEnvironment = process.env.NODE_ENV !== 'production';
+  const isDevEnvironment = (process.env.NEXT_PUBLIC_DEBUG === 'true');
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">PDF Summarizer</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <p className='flex'><FileText className='me-2' color="red" size="40"/>PDF Summarizer</p>
+        </h1>
 
         {(summary || quiz) && (
           <Button
@@ -68,7 +72,9 @@ export default function PDFSummarizePage() {
                 className="flex justify-between items-center cursor-pointer p-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors duration-150"
                 onClick={toggleDebug}
               >
-                <h2 className="text-xl font-semibold">Debug: Raw API Response</h2>
+                <h2 className="text-xl font-semibold">
+                    <p className='flex'><Bug className='mx-2' color="orange" size={28} /> Debug: Raw API Response</p>
+                </h2>
                 <Button variant="ghost" size="sm">
                   {showDebug ? <ChevronUpIcon className="h-5 w-5" /> : <ChevronDownIcon className="h-5 w-5" />}
                 </Button>

@@ -26,7 +26,7 @@ export const DEFAULT_QUIZ_QUESTIONS = 5;
 
 // Chat related constants
 export const MAX_MESSAGE_LENGTH = 2000;
-export const DEFAULT_BOT_NAME = 'BareMinimum Bot';
+export const DEFAULT_BOT_NAME = 'BM Bot';
 export const DEFAULT_USER_NAME = 'You';
 
 // UI constants

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "BareMinimum Bot",
+  title: "BM Bot",
   description: "AI chatbot and content summarization tool",
 };
 
