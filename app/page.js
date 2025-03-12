@@ -21,41 +21,45 @@ export default function Home() {
     setShowDebug(!showDebug);
   };
 
+  // Check if we should show debug info
+  const isDevEnvironment = process.env.NODE_ENV !== 'production';
+
   return (
-    <div className="container mx-auto px-4 py-8 pb-32 min-h-screen max-w-5xl">
-      <div className="flex flex-col h-full">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-            BareMinimum Bot
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">
-            Chat with our AI assistant or use the summarization tools to process content.
-          </p>
-        </div>
-
-        <Card className="flex-1 overflow-hidden">
-          <div className="h-full">
-            <ChatWindow />
-          </div>
-        </Card>
-
-        {/* Debug information - collapsible and only shown in development */}
-        {process.env.NODE_ENV === 'development' && rawResponse && (
-          <Card className="mt-4 mb-12">
-            <div className="flex justify-between items-center cursor-pointer" onClick={toggleDebug}>
-              <h2 className="text-xl font-semibold">Debug: Raw Chat Response</h2>
-              <Button variant="ghost" size="sm">
-                {showDebug ? <ChevronUpIcon className="h-5 w-5" /> : <ChevronDownIcon className="h-5 w-5" />}
-              </Button>
-            </div>
-            {showDebug && (
-              <div className="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-auto max-h-[300px]">
-                <pre className="text-xs dark:text-gray-300">{JSON.stringify(rawResponse, null, 2)}</pre>
-              </div>
-            )}
-          </Card>
-        )}
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+          BareMinimum Bot
+        </h1>
+        <p className="mt-3 text-lg text-gray-600 dark:text-gray-400">
+          Chat with our AI assistant or use the summarization tools to process content.
+        </p>
       </div>
+
+      <Card className="flex-1 overflow-hidden shadow-sm hover:shadow transition-shadow duration-300 border border-gray-200 dark:border-gray-800">
+        <div className="h-full">
+          <ChatWindow />
+        </div>
+      </Card>
+
+      {/* Debug information - collapsible and only shown in development */}
+      {isDevEnvironment && rawResponse && (
+        <Card className="mt-6 mb-12 shadow-sm border border-gray-200 dark:border-gray-800">
+          <div
+            className="flex justify-between items-center cursor-pointer p-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors duration-150"
+            onClick={toggleDebug}
+          >
+            <h2 className="text-xl font-semibold">Debug: Raw Chat Response</h2>
+            <Button variant="ghost" size="sm">
+              {showDebug ? <ChevronUpIcon className="h-5 w-5" /> : <ChevronDownIcon className="h-5 w-5" />}
+            </Button>
+          </div>
+          {showDebug && (
+            <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-md m-4 overflow-auto max-h-[300px]">
+              <pre className="text-xs whitespace-pre-wrap dark:text-gray-300">{JSON.stringify(rawResponse, null, 2)}</pre>
+            </div>
+          )}
+        </Card>
+      )}
     </div>
   );
 }

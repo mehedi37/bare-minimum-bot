@@ -11,9 +11,11 @@ const ThemeContext = createContext();
 export function ThemeProvider({ children }) {
   // Theme state
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Check system preference on mount
   useEffect(() => {
+    setMounted(true);
     // Check if dark mode is preferred
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -31,18 +33,26 @@ export function ThemeProvider({ children }) {
 
   // Update document class when theme changes
   useEffect(() => {
+    if (!mounted) return;
+
+    // Apply theme to the document
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
     }
 
     // Save preference
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
+
+    console.log('Theme updated:', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode, mounted]);
 
   // Toggle theme
   const toggleTheme = () => {
+    console.log('Toggling theme. Current:', isDarkMode ? 'dark' : 'light');
     setIsDarkMode(prev => !prev);
   };
 

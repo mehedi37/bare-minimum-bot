@@ -27,7 +27,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-sm backdrop-blur-sm bg-white/95 dark:bg-gray-900/95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and desktop navigation */}
@@ -45,7 +45,7 @@ export default function Navbar() {
                   isActive('/')
                     ? 'border-blue-500 text-gray-900 dark:text-gray-100'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-                } text-sm font-medium`}
+                } text-sm font-medium transition-colors duration-200`}
               >
                 Chat
               </Link>
@@ -56,7 +56,7 @@ export default function Navbar() {
                   isActive('/summarize')
                     ? 'border-blue-500 text-gray-900 dark:text-gray-100'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-                } text-sm font-medium`}
+                } text-sm font-medium transition-colors duration-200`}
               >
                 Summarize
               </Link>
